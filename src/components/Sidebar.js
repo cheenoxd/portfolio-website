@@ -3,8 +3,11 @@ import ToggleButton from './ToggleButton';
 import Links from './Links';
 import {motion} from 'framer-motion'
 import '../css/Sidebar.css';
+
+
 export default function Sidebar() {
    const [open,setOpen] = useState(false);
+  
 
    const variants = {
     open: {

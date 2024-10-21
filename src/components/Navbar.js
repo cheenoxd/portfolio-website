@@ -3,12 +3,15 @@ import { HashLink as Link } from 'react-router-hash-link';
 import { helix } from 'ldrs';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { BsFillPersonLinesFill } from 'react-icons/bs';
+import Sidebar from './Sidebar'; // Import Sidebar component
+import ToggleButton from './ToggleButton'; // Import ToggleButton component
 import '../css/Navbar.css';
 
 helix.register();
 
 export default function Navbar() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [open, setOpen] = useState(false); // State to manage sidebar toggle
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -20,7 +23,7 @@ export default function Navbar() {
     {
       id: 1,
       name: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/zesanrahim/,',
+      href: 'https://www.linkedin.com/in/zesanrahim/',
       icon: <FaLinkedin size={25} />,
     },
     {
@@ -43,14 +46,22 @@ export default function Navbar() {
         <div className="helix-container">
           <l-helix size="45" speed="2.5" color="white" />
         </div>
+        {isMobile && (
+          <ToggleButton setOpen={setOpen} /> 
+        )}
       </div>
-      <nav>
+
+      {/* Render Sidebar for Mobile */}
+      {isMobile && open && <Sidebar open={open} setOpen={setOpen} />}
+
+      <nav className={`${isMobile ? 'hidden' : ''}`}>
         <Link to="#" smooth className="nav-link">home</Link>
         <Link to="#about" smooth className="nav-link">about</Link>
         <Link to="#projects" smooth className="nav-link">projects</Link>
         <Link to="#skills" smooth className="nav-link">skills</Link>
         <Link to="#contact" smooth className="nav-link">contact</Link>
       </nav>
+
       <div className={`social-links ${isMobile ? 'hidden' : ''}`}>
         <ul>
           {links.map(({ id, name, href, icon }) => (

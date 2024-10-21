@@ -26,12 +26,7 @@ const Projects = () => {
       image: portfoliopng,
       link: "https://github.com/cheenoxd/portfolio-website",
     },
-    {
-      title: "Portfolio Website",
-      description: " React | CSS",
-      image: portfoliopng,
-      link: "https://github.com/cheenoxd/portfolio-website",
-    },
+   
   
   ];
 
